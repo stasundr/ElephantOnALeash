@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Elephant on a leash</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="css/chartist.min.css">
+    <link rel="stylesheet" href="css/kube.min.css" />
+    <link rel="stylesheet" href="css/small.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+    <script src="js/kube.min.js"></script>
+    <script src="js/chartist.min.js"></script>
+</head>
+<body>
+<div class="units-container">
+    <br />
+    <div class="unit-centered unit-90 units-padding">
+        <% if (typeof isAuthenticated == 'undefined') { var isAuthenticated = false; } %>
+        <% if (isAuthenticated) { %>
+        <nav class="navbar navbar-right">
+            <a href="/logout">Выйти</a>
+        </nav>
+        <% } %>
+
+        <div class="units-row ">
+            <h1>Слон на поводке</h1>
+            <cite class="right">- Ободряющие цитаты на каждый день</cite>
+        </div>
+
+        <% if (!isAuthenticated) { %>
+        <div class="units-row">
+            <div class="unit-70">
+                <p>Проблема похудения очень актуальна в современном мире. Существует много методик, диет, способов и средств для потери избыточного веса. Многие из них – экстремальные и опасные для здоровья.</p>
+                <p>Возможно, вы уже испробовали на себе какие-то из способов потери лишнего веса, но снова пришли к вопросу: как эффективно похудеть, без вреда для здоровья и закрепить этот результат, то есть не поправляться вновь?</p>
+                <p>Если вы хотите эффективно похудеть, а не набирать-сбрасывать, набирать-сбрасывать вес, то выберите для себя самый лучший и действенный способ похудения: правильное похудение без вреда для здоровья.</p>
+            </div>
+            <div class="unit-30">
+                <form method="post" action="/auth" class="forms">
+                    <label>
+                        <input type="text" name="username" placeholder="Электронная почта" class="width-100" />
+                    </label>
+                    <label>
+                        <input type="password" name="password" placeholder="Пароль" class="width-100" />
+                    </label>
+                    <p>
+                        <button class="btn btn-blue width-100">Войти</button>
+                    <div id="centered-link">
+                        <a href="/registration" style="color: #b0b0b0" >Регистрация</a>
+                    </div>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <% } else { %>
+
+        <div class="units-row ">
+            <br />
+            <h3><%= name%>, сколько ты сейчас весишь?</h3>
+            <form method="post" action="/weight" class="forms forms-inline">
+                <a href="#" class="btn btn-green btn-outline" onclick="weightDown();"><b>-</b></a>
+                <input id="weight-label" type="text" name="weight" placeholder="Вес" value="<%= JSON.parse(weight_calendar[weight_calendar.length-1]).weight %>" />
+                <a href="#" class="btn btn-red btn-outline" onclick="weightUp();"><b>+</b></a>
+                <button class="btn btn-blue">Записать вес</button>
+            </form>
+        </div>
+
+        <div class="units-row ">
+            <div class="ct-chart ct-major-twelfth"></div>
+        </div>
+        <% } %>
+
+    </div>
+</div>
+
+<% if (isAuthenticated) { %>
+<script>
+
+    var series = [];
+    var labels = [];
+    <% for (var i = 0; i < weight_calendar.length; i++) { %>
+        series.push(<%= JSON.parse(weight_calendar[i]).weight %>);
+        labels.push("<%= JSON.parse(weight_calendar[i]).date %>");
+    <% } %>
+
+    var data = {
+        // A labels array that can contain any sort of values
+        labels: labels,
+        // Our series array that contains series objects or in this case series data arrays
+        series: [
+            series
+        ]
+    };
+
+    // Разобраться с отрисовкой надписей по OX
+
+    new Chartist.Line('.ct-chart', data);
+</script>
+
+
+<script>
+    function weightUp() {
+        var label = document.getElementById('weight-label');
+        if (!label.value) label.value = 0;
+        label.value = (parseFloat(label.value) + 0.1).toFixed(1);
+    };
+
+    function weightDown() {
+        var label = document.getElementById('weight-label');
+        if (!label.value) label.value = 0;
+        label.value = (parseFloat(label.value) - 0.1).toFixed(1);
+    };
+</script>
+<% } %>
+</body>
+</html>

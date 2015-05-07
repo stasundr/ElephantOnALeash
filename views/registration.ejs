@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Elephant on a leash</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="css/kube.min.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+    <script src="js/kube.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+
+</head>
+<body>
+<div class="units-container">
+    <div class="unit-centered unit-90 units-padding">
+        <br />
+        <div class="units-row ">
+            <h1>Слон на поводке</h1>
+            <cite class="right">- Даже путь в тысячу ли начинается с первого шага.</cite>
+        </div>
+
+        <div class="units-row">
+            <div class="unit-40 unit-centered">
+
+                <% if (typeof problem != 'undefined') { %>
+                <div class="tools-alert tools-alert-yellow">
+                    <% if (problem == 'user found') { %>
+                        Упс! Кажется, эту почту уже использовали для регистрации!
+                    <% } %>
+
+                    <% if (problem == 'bad email') { %>
+                        Пожалуйста, убедись, что адрес почты написан правильно!
+                    <% } %>
+
+                    <% if (problem == 'confirmation fail') { %>
+                        Пароль не совпадает с его подтверждением!
+                    <% } %>
+
+                    <% if (problem == 'too short') { %>
+                        Пожалуйста, придумай пароль длинее 5 символов.
+                    <% } %>
+
+                    <% if (problem == 'too long') { %>
+                        Пожалуйста, придумай пароль короче 50 символов.
+                    <% } %>
+
+                    <% if (problem == 'no num') { %>
+                        Пожалуйста, добавь в пароль хотя бы одну цифру.
+                    <% } %>
+
+                    <% if (problem == 'no letter') { %>
+                        Пожалуйста, добавь в пароль хотя бы одну латинскую букву.
+                    <% } %>
+
+                    <% if (problem == 'bad char') { %>
+                        Пожалуйста, убери из пароля неподходящие символы.
+                    <% } %>
+                </div>
+                <% } %>
+
+                <form method="post" action="/registration" class="forms">
+                    <label>
+                        <input type="text" name="name" placeholder="Имя" class="width-100" />
+                    </label>
+                    <label>
+                        <input type="email" name="username" placeholder="Электронная почта" class="width-100" />
+                    </label>
+                    <label>
+                        <input type="password" name="password" placeholder="Пароль" class="width-100" />
+                    </label>
+                    <label>
+                        <input type="password" name="confirmation" placeholder="Повторение пароля" class="width-100" />
+                    </label>
+                    <h5>Пол:</h5>
+                    <ul class="forms-list">
+                        <li>
+                            <input type="radio" name="gender" id="radio-1" value="female" checked>
+                            <label for="radio-1">Женский</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="gender" id="radio-2" value="male">
+                            <label for="radio-2">Мужской</label>
+                        </li>
+                    </ul>
+                    <p>
+                        <button class="btn btn-green width-100">Зарегистрироваться</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+</body>
+</html>
