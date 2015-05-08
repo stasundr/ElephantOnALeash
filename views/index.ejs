@@ -22,7 +22,10 @@
         <% if (typeof isAuthenticated == 'undefined') { var isAuthenticated = false; } %>
         <% if (isAuthenticated) { %>
         <nav class="navbar navbar-right">
-            <a href="/logout">Выйти</a>
+            <ul>
+                <li><a href="/settings" title="Настройки" data-theme="blue" data-tools="tooltip" class="fa fa-cog"></a></li>
+                <li><a href="/logout" title="Выход" data-theme="blue" data-tools="tooltip" class="fa fa-close"></a></li>
+            </ul>
         </nav>
         <% } %>
 

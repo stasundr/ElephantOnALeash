@@ -14,6 +14,7 @@ module.exports = function(app, passport){
                     }));
                 }
 
+                // FIX
                 var a = [];
                 for (var i = 0; i < weight_calendar.length; i++) {
                     a.push(JSON.stringify({weight: JSON.parse(weight_calendar[i]).weight, date: i}));
@@ -45,6 +46,12 @@ module.exports = function(app, passport){
         }
 
         response.redirect('/');
+    });
+
+    app.get('/settings', function(request, response) {
+        if (request.session.isAuthenticated) {
+            response.render('settings.ejs');
+        } else response.render('index.ejs', { isAuthenticated: false });
     });
 
     app.get('/registration', function(request, response) {

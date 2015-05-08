@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Elephant on a leash</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="css/small.css" />
+    <link rel="stylesheet" href="css/kube.min.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+    <script src="js/kube.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+
+</head>
+<body>
+<div class="units-container">
+    <div class="unit-centered unit-90 units-padding">
+        <br />
+
+        <nav class="navbar navbar-right">
+            <ul>
+                <li><a href="/" title="Профиль" data-theme="blue" data-tools="tooltip" class="fa fa-home"></a></li>
+                <li><a href="/logout" title="Выход" data-theme="blue" data-tools="tooltip" class="fa fa-close"></a></li>
+            </ul>
+        </nav>
+
+        <div class="units-row ">
+            <h1>Слон на поводке</h1>
+            <cite class="right">- Даже путь в тысячу ли начинается с первого шага.</cite>
+        </div>
+
+        <div class="units-row">
+            <div class="unit-40 unit-centered">
+
+                <form method="post" action="/registration" class="forms">
+                    <div id="centered-link" class="units-row">
+                        <h2>Настройки вашего профиля</h2>
+                    </div>
+
+                    <label>
+                        <input type="text" name="name" placeholder="Имя" class="width-100" />
+                    </label>
+                    <label>
+                        <input type="email" name="username" placeholder="Электронная почта" class="width-100" />
+                    </label>
+                    <label>
+                        <input type="password" name="new_password" placeholder="Новый пароль" class="width-100" />
+                    </label>
+                    <h5>Пол:</h5>
+                    <ul class="forms-list">
+                        <li>
+                            <input type="radio" name="gender" id="radio-1" value="female" checked>
+                            <label for="radio-1">Женский</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="gender" id="radio-2" value="male">
+                            <label for="radio-2">Мужской</label>
+                        </li>
+                    </ul>
+                    <br />
+                    <label>
+                        <input type="password" name="password" placeholder="Текущий пароль" class="width-100" />
+                    </label>
+                    <p>
+                        <button class="btn btn-green width-100">Сохранить изменения</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+</body>
+</html>
